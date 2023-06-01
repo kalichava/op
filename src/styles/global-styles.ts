@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: ${DT.COLOR_BACKGROUND_LIGHT};
+    background-color: ${DT.COLOR_BACKGROUND_LIGHTER};
   }
 
   body.fontLoaded {

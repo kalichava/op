@@ -196,7 +196,8 @@ export function CartPage() {
 }
 
 const Section = styled.div`
-  margin-bottom: ${DT.SPACE_6};
+  margin-bottom: ${DT.SPACE_4};
+  background-color: ${DT.COLOR_BACKGROUND_LIGHT};
 `;
 
 const List = styled.div``;
@@ -206,7 +207,7 @@ const SectionBody = styled.div`
 `;
 
 const SectionFooter = styled.div`
-  padding: ${DT.SPACE_4} 0 0 0;
+  padding: ${DT.SPACE_4} 0;
   border-top: 1px solid ${DT.COLOR_BORDER_LIGHT};
   text-align: center;
 `;
@@ -214,6 +215,7 @@ const SectionFooter = styled.div`
 const Table = styled.table`
   width: 100%;
   font-size: inherit;
+  font-size: ${DT.FONT_SIZE_BODY_MD};
 `;
 
 const Row = styled.tr``;
