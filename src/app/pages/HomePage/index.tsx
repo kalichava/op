@@ -9,11 +9,8 @@ export function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Home Page</title>
-        <meta
-          name="description"
-          content="A React Boilerplate application homepage"
-        />
+        <title>Checkout / My Cart</title>
+        <meta name="description" content="Checkout / My Cart" />
       </Helmet>
       <NavBar />
       <PageWrapper>

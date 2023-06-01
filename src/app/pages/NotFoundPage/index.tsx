@@ -4,7 +4,7 @@ import { P } from './P';
 import { Link } from 'app/components/Link';
 import { NavBar } from 'app/components/NavBar';
 import { Helmet } from 'react-helmet-async';
-import { StyleConstants } from 'styles/StyleConstants';
+import { DesignTokens } from 'styles/DesignTokens';
 
 export function NotFoundPage() {
   return (
@@ -30,7 +30,6 @@ export function NotFoundPage() {
 }
 
 const Wrapper = styled.div`
-  height: calc(100vh - ${StyleConstants.NAV_BAR_HEIGHT});
   display: flex;
   align-items: center;
   justify-content: center;
