@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { DesignTokens as DT } from '../../../styles/DesignTokens';
+import { DesignTokens as DT } from 'styles/DesignTokens';
 import { USDollar } from 'app/helpers';
 import { Button } from 'app/components/Button';
 import { CornerBadge } from 'app/components/CornerBadge';
@@ -115,14 +115,14 @@ const ProductCardWrapper = styled.div.attrs(props => ({
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: ${DT.COLOR_BACKGROUND_LIGHT};
+  background-color: white;
   border-radius: ${DT.SPACE_2};
   padding: ${DT.SPACE_5};
   width: ${DT.PRODUCT_CARD_WIDTH};
   min-width: ${DT.PRODUCT_CARD_WIDTH};
   overflow: hidden;
   .name {
-    font-weight: 600;
+    font-weight: ${DT.FONT_WEIGHT_BOLD};
     line-height: 1.2;
     max-height: 78px;
     overflow: hidden;
@@ -138,7 +138,7 @@ const ProductCardWrapper = styled.div.attrs(props => ({
     padding: ${DT.SPACE_3} 0 ${DT.SPACE_2} 0;
   }
   .currentPrice {
-    font-weight: 600;
+    font-weight: ${DT.FONT_WEIGHT_BOLD};
     color: ${DT.COLOR_DELTA};
   }
   .oldPrice {

@@ -27,6 +27,8 @@ export const enum DesignTokens {
   LINE_HEIGHT_TITLE_MD = '18px',
   LINE_HEIGHT_TITLE_LG = '22px',
 
+  FONT_WEIGHT_BOLD = '700',
+
   // COLORS
   // // ALPHA
   COLOR_ALPHA = '#66AA22',
@@ -174,7 +176,7 @@ export const enum DesignTokens {
   COLOR_BORDER_DARK = '#8DA3CC',
 
   // // BACKGROUND
-  COLOR_BACKGROUND_LIGHT = '#FFFFFF',
+  COLOR_BACKGROUND_LIGHT = '#FAFBFD',
   COLOR_BACKGROUND_LIGHTER = '#F4F6FA',
   COLOR_BACKGROUND = '#EEF0F5',
   COLOR_BACKGROUND_DARKER = '#D1DAEB',
@@ -204,7 +206,12 @@ export const enum DesignTokens {
   SPACE_11 = '48px',
   SPACE_12 = '64px',
 
+  BORDER_RADIUS_SM = '3px',
+  BORDER_RADIUS_MD = '4px',
+  BORDER_RADIUS_LG = '5px',
+
   PRODUCT_THUMB_HEIGHT = '112px',
   PRODUCT_CARD_WIDTH = '180px',
+
   NAV_BAR_HEIGHT = '4rem',
 }

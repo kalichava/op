@@ -1,20 +1,25 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { DesignTokens as DT } from '../../../styles/DesignTokens';
+import { DesignTokens as DT } from 'styles/DesignTokens';
 import { Helmet } from 'react-helmet-async';
 
 import { NavBar } from 'app/components/NavBar';
 import { SearchBar } from 'app/components/SearchBar';
 import { PageWrapper } from 'app/components/PageWrapper';
 import { SectionHeader } from 'app/components/SectionHeader';
+import { SectionFooter } from 'app/components/SectionFooter';
+import { SectionBody } from 'app/components/SectionBody';
 import { ListItem } from 'app/components/ListItem';
 import { Button } from 'app/components/Button';
-import { Icon } from 'app/components/Icon';
 
 import { SavedForLater } from 'app/sections/SavedForLater';
 import { MyWishlist } from 'app/sections/MyWishlist';
 import { Related } from 'app/sections/Related';
 import { CartItems } from 'app/sections/CartItems';
+import { OrderSummary } from 'app/sections/OrderSummary';
+import { Toast } from 'app/components/Toast';
+
+// import { relative } from 'path';
 // import { title } from 'process';
 
 export function CartPage() {
@@ -30,56 +35,28 @@ export function CartPage() {
         {/* Order Summary */}
         <Section>
           <SectionHeader name="Order Summary" />
+          <OrderSummary />
+        </Section>
+
+        {/* Toasts */}
+        <Section>
           <SectionBody>
-            <Table>
-              <tbody>
-                <Row>
-                  <Cell>Order Subtotal (10 Items)</Cell>
-                  <Cell align="right">
-                    <strong>$2,640.63</strong>
-                  </Cell>
-                </Row>
-                <Row>
-                  <Cell>Coupon</Cell>
-                  <Cell align="right">
-                    <strong className="colorDiscount">-$7.95</strong>
-                  </Cell>
-                </Row>
-                <Row>
-                  <Cell>
-                    Value Shipping <a href="#change">Change</a>
-                  </Cell>
-                  <Cell align="right">
-                    <strong className="colorDiscount">Free</strong>
-                  </Cell>
-                </Row>
-                <Row>
-                  <Cell>Est. Sales Tax (CA)</Cell>
-                  <Cell align="right">
-                    <strong>$88.90</strong>
-                  </Cell>
-                </Row>
-                <Row>
-                  <Cell>Grand Total</Cell>
-                  <Cell align="right">
-                    <TotalPrice>$2,750.93</TotalPrice>
-                  </Cell>
-                </Row>
-              </tbody>
-            </Table>
+            <div className="addBottom5">
+              <Toast
+                name="Alternative Payment methods"
+                icon="info"
+                color="beta"
+                variant="MD"
+              >
+                <div>
+                  One or more of the items in your cart do not qualify for
+                  Google Pay or PayPal, per gateway Acceptable Use Policies. We
+                  apologize for the inconvenience. Please use our credit card
+                  payment option.
+                </div>
+              </Toast>
+            </div>
           </SectionBody>
-          <SectionFooter>
-            <div className="smaller flex flexCenter colorDiscount">
-              <strong className="addRight2">You save $1,057.91 (27%)</strong>
-              <Icon src="icons/info.svg" size={20}></Icon>
-            </div>
-            <div className="smaller flex flexCenter">
-              <strong>
-                You will get <span className="colorDiscount">$54.08</span> OP
-                Bucks after items ship
-              </strong>
-            </div>
-          </SectionFooter>
         </Section>
 
         {/* Items in Your Cart */}
@@ -126,7 +103,7 @@ export function CartPage() {
         {/* Save or Retrieve Your Cart */}
         <Section>
           <SectionHeader name="Save or Retrieve Your Cart" />
-          <SectionBody>
+          <SectionBody paddings={false}>
             <List>
               <ListItem
                 name="Email & Save the Cart"
@@ -144,19 +121,25 @@ export function CartPage() {
                 additionalIcon="chevron_right"
               ></ListItem>
             </List>
-            <div className="smaller light center">or</div>
-            <Button
-              name="Continue Shopping"
-              icon={{ name: 'incoming_mail', position: 'left' }}
-              fullwidth={true}
-            />
           </SectionBody>
+          <SectionFooter>
+            <>
+              <div className="smaller light center addBottom5">or</div>
+              <Button
+                name="Continue Shopping"
+                icon={{ name: 'incoming_mail', position: 'left' }}
+                color="beta"
+                inversed={false}
+                fullwidth={true}
+              />
+            </>
+          </SectionFooter>
         </Section>
 
         {/* Have a coupon or gift Certificate? */}
         <Section>
           <SectionHeader name="Have a coupon or gift Certificate?" />
-          <SectionBody>
+          <SectionBody paddings={false}>
             <List>
               <ListItem
                 name="Coupon"
@@ -180,7 +163,7 @@ export function CartPage() {
             name="Opticsplanet bucks"
             link={{ title: 'How it Works', url: '', icon: 'help' }}
           />
-          <SectionBody>
+          <SectionBody paddings={false}>
             <List>
               <ListItem
                 name="$2.05 OP Bucks Applied to Your Order"
@@ -190,47 +173,17 @@ export function CartPage() {
             </List>
           </SectionBody>
         </Section>
+
+        {/* Order Summary */}
+        <Section>
+          <SectionHeader name="Order Summary" />
+          <OrderSummary />
+        </Section>
       </PageWrapper>
     </>
   );
 }
 
-const Section = styled.div`
-  margin-bottom: ${DT.SPACE_4};
-  background-color: ${DT.COLOR_BACKGROUND_LIGHT};
-`;
+const Section = styled.div``;
 
 const List = styled.div``;
-
-const SectionBody = styled.div`
-  padding: ${DT.SPACE_4} 0;
-`;
-
-const SectionFooter = styled.div`
-  padding: ${DT.SPACE_4} 0;
-  border-top: 1px solid ${DT.COLOR_BORDER_LIGHT};
-  text-align: center;
-`;
-
-const Table = styled.table`
-  width: 100%;
-  font-size: inherit;
-  font-size: ${DT.FONT_SIZE_BODY_MD};
-`;
-
-const Row = styled.tr``;
-
-const Cell = styled.td`
-  text-align: ${props => props.align || 'left'};
-  padding: ${DT.SPACE_0} ${DT.SPACE_6};
-`;
-
-const TotalPrice = styled.span`
-  display: inline-block;
-  background-color: ${DT.COLOR_DELTA};
-  padding: 0 ${DT.SPACE_4};
-  margin-right: -${DT.SPACE_4};
-  font-weight: 600;
-  color: white;
-  border-radius: 99px;
-`;

@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { DesignTokens as DT } from '../../../styles/DesignTokens';
+import { DesignTokens as DT } from 'styles/DesignTokens';
 import { Icon } from '../Icon';
 
 type Props = {
@@ -41,15 +41,20 @@ export function ListItem({
 }
 
 const Wrapper = styled.a`
+  background-color: white;
   border-bottom: 1px solid ${DT.COLOR_BORDER_LIGHT};
   display: flex;
   width: 100%;
   padding: ${DT.SPACE_4} ${DT.SPACE_6};
   margin: 0 auto;
   font-size: ${DT.FONT_SIZE_BODY_LG};
-  font-weight: 600;
+  font-weight: ${DT.FONT_WEIGHT_BOLD};
   :last-child {
     border: none;
+  }
+  &:hover {
+    background-color: ${DT.COLOR_BACKGROUND_LIGHT};
+    border-bottom-color: ${DT.COLOR_BORDER_LIGHTER};
   }
 `;
 

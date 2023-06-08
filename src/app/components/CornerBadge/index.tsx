@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { DesignTokens as DT } from '../../../styles/DesignTokens';
+import { DesignTokens as DT } from 'styles/DesignTokens';
 
 type Props = {
   name: string | boolean;
@@ -69,7 +69,7 @@ const Wrapper = styled.div`
   font-size: ${DT.FONT_SIZE_BODY_SM};
   line-height: 23px;
   height: 23px;
-  font-weight: 600;
+  font-weight: ${DT.FONT_WEIGHT_BOLD};
   color: ${props => handleTextColor(props.color)};
   background-color: ${props => handleBackgroundColor(props.color)};
   border: none;

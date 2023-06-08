@@ -21,16 +21,16 @@ export function App() {
   return (
     <BrowserRouter>
       <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
+        titleTemplate="%s - OpticsPlanet"
+        defaultTitle="Checkout — OpticsPlanet"
         htmlAttributes={{ lang: i18n.language }}
       >
-        <meta name="description" content="A React Boilerplate application" />
+        <meta name="description" content="Checkout — OpticsPlanet" />
       </Helmet>
 
       <Routes>
-        <Route path="/" element={<CartPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        {/* <Route path="/checkout/v2/build" element={<CartPage />} /> */}
+        <Route path="*" element={<CartPage />} />
       </Routes>
       <GlobalStyle />
     </BrowserRouter>

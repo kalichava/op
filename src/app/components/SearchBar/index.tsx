@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { DesignTokens as DT } from '../../../styles/DesignTokens';
+import { DesignTokens as DT } from 'styles/DesignTokens';
 
 export function SearchBar() {
   return (

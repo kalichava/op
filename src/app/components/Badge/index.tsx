@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { DesignTokens as DT } from '../../../styles/DesignTokens';
+import { DesignTokens as DT } from 'styles/DesignTokens';
 import { USDollar, handleBackgroundColor, handleTextColor } from 'app/helpers';
 import { Icon } from 'app/components/Icon';
 
@@ -56,7 +56,7 @@ const Wrapper = styled.div`
     align-items: center;
     height: 20px;
     background-color: ${props => handleBackgroundColor(props.color)};
-    font-weight: 600;
+    font-weight: ${DT.FONT_WEIGHT_BOLD};
     border: none;
     border-radius: 0 ${DT.SPACE_2} ${DT.SPACE_2} 0;
     font-size: ${DT.FONT_SIZE_BODY_SM};
@@ -67,6 +67,6 @@ const Wrapper = styled.div`
   .name {
   }
   .icon {
-    fill: ${props => handleTextColor(props.color)};
+    fill: ${props => handleTextColor(props.color, false, false)};
   }
 `;

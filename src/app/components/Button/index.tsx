@@ -1,9 +1,14 @@
 import styled from 'styled-components/macro';
 import { Icon } from '../Icon';
-import { DesignTokens as DT } from '../../../styles/DesignTokens';
+import { DesignTokens as DT } from 'styles/DesignTokens';
+import {
+  handleBackgroundColor,
+  handleTextColor,
+  handleBorderColor,
+} from 'app/helpers';
 
 type Props = {
-  name: string;
+  name?: string;
   icon?: {
     name: string | boolean;
     position: string;
@@ -11,6 +16,8 @@ type Props = {
   size?: string;
   fullwidth?: boolean;
   color?: string;
+  rounded?: boolean;
+  inversed?: boolean;
   // additionalText?: string;
   // additionalIcon?: string;
   // onClick: () => void;
@@ -19,20 +26,29 @@ type Props = {
 export function Button({
   name,
   icon = { name: false, position: 'left' },
-  size,
+  size = 'MD',
   fullwidth = false,
   color = 'white',
+  rounded = false,
+  inversed = false,
 }: Props) {
   return (
-    <Wrapper className={fullwidth ? 'fullwidth' : ''} color={color}>
+    <Wrapper
+      className={fullwidth ? 'fullwidth' : ''}
+      size={size}
+      color={color}
+      href="#"
+      rounded={rounded}
+      inversed={inversed}
+    >
       {icon && icon.name && icon.position === 'left' ? (
-        <Icon src={'icons/' + icon.name + '.svg'} />
+        <Icon src={'icons/' + icon.name + '.svg'} size={handleIconSize(size)} />
       ) : (
         false
       )}
-      <ButtonName>{name}</ButtonName>
+      {name ? <ButtonName>{name}</ButtonName> : ''}
       {icon && icon.name && icon.position === 'right' ? (
-        <Icon src={'icons/' + icon.name + '.svg'} />
+        <Icon src={'icons/' + icon.name + '.svg'} size={handleIconSize(size)} />
       ) : (
         false
       )}
@@ -40,39 +56,18 @@ export function Button({
   );
 }
 
-const handleBackgroundColor = (color, hover = false) => {
-  switch (color) {
-    case 'alpha':
-      return hover ? DT.COLOR_ALPHA_DARKER_10 : DT.COLOR_ALPHA;
-    case 'beta':
-      return hover ? DT.COLOR_BETA_DARKER_10 : DT.COLOR_BETA;
-    case 'gamma':
-      return hover ? DT.COLOR_GAMMA_DARKER_10 : DT.COLOR_GAMMA;
-    case 'delta':
-      return hover ? DT.COLOR_DELTA_DARKER_10 : DT.COLOR_DELTA;
-    case 'epsilon':
-      return hover ? DT.COLOR_EPSILON_DARKER_10 : DT.COLOR_EPSILON;
-    case 'zeta':
-      return hover ? DT.COLOR_ZETA_DARKER_10 : DT.COLOR_ZETA;
+const handleIconSize = (size: string) => {
+  switch (size) {
+    case 'LG':
+      return 30;
+    case 'SM':
+      return 18;
     default:
-      return '#fff';
-  }
-};
-const handleTextColor = (color, hover = false) => {
-  switch (color) {
-    case 'alpha':
-    case 'beta':
-    case 'gamma':
-    case 'delta':
-    case 'epsilon':
-    case 'zeta':
-      return '#FFF';
-    default:
-      return hover ? DT.COLOR_BETA : DT.COLOR_BETA_DARKER_10;
+      return 22;
   }
 };
 
-const Wrapper = styled.a`
+const Wrapper = styled.a<{ rounded; size; color; inversed }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,12 +76,18 @@ const Wrapper = styled.a`
   margin: 0 auto;
   white-space: nowrap;
   width: min-content;
-  border-radius: ${DT.SPACE_3};
-  color: ${props => handleTextColor(props.color)};
-  background-color: ${props => handleBackgroundColor(props.color)};
+  border-radius: ${props => (props.rounded ? '99px' : DT.BORDER_RADIUS_MD)};
+  color: ${props => handleTextColor(props.color, false, props.inversed)};
+  background-color: ${props =>
+    handleBackgroundColor(props.color, false, props.inversed)};
+  border: 1px solid
+    ${props => handleBorderColor(props.color, false, props.inversed)};
   &:hover {
-    color: ${props => handleTextColor(props.color, true)};
-    background-color: ${props => handleBackgroundColor(props.color, true)};
+    color: ${props => handleTextColor(props.color, true, props.inversed)};
+    background-color: ${props =>
+      handleBackgroundColor(props.color, true, props.inversed)};
+    border-color: ${props =>
+      handleBorderColor(props.color, true, props.inversed)};
   }
   &.fullwidth {
     width: 100%;
@@ -94,5 +95,5 @@ const Wrapper = styled.a`
 `;
 const ButtonName = styled.span`
   font-size: ${DT.FONT_SIZE_BODY_LG};
-  font-weight: 600;
+  font-weight: ${DT.FONT_WEIGHT_BOLD};
 `;
