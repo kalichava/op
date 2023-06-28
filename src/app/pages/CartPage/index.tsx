@@ -45,8 +45,10 @@ export function CartPage() {
               <Toast
                 name="Alternative Payment methods"
                 icon="info"
-                color="beta"
-                variant="MD"
+                collapsable={true}
+                closable={false}
+                // color="beta"
+                // variant="MD"
               >
                 <div>
                   One or more of the items in your cart do not qualify for

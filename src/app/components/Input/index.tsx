@@ -20,7 +20,7 @@ type Props = {
   // additionalText?: string;
   // additionalIcon?: string;
   // onClick: () => void;
-  onChange: (event: any) => void;
+  onChange?: (event: any) => void;
 };
 
 export function Input({

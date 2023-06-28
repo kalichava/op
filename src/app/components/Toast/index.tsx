@@ -29,7 +29,7 @@ type ToastProps = {
 export const Toast = ({
   name = 'Toast',
   icon = '',
-  color = 'gamma',
+  color = 'white',
   variant = 'MD',
   closable = true,
   collapsable = false,
@@ -108,15 +108,39 @@ const ToastWrapper = styled.div<{ color: string; variant: string }>`
 
       default:
         return `
-          border: 1px solid ${handleColor(props.color, 'lighter', 80)};
+          border: 1px solid ${
+            props.color === 'white'
+              ? DT.COLOR_BORDER_LIGHTER
+              : handleColor(props.color, 'lighter', 80)
+          };
           border-radius: ${DT.BORDER_RADIUS_MD};
-          background-color: ${handleColor(props.color, 'lighter', 95)};
-          color: ${handleColor(props.color, 'darker', 80)};
+          background-color: ${
+            props.color === 'white'
+              ? 'white'
+              : handleColor(props.color, 'lighter', 95)
+          };
+          color: ${
+            props.color === 'white'
+              ? DT.COLOR_TEXT
+              : handleColor(props.color, 'darker', 70)
+          };
           font-size: ${DT.FONT_SIZE_BODY_MD};
           line-height: ${DT.LINE_HEIGHT_BODY_MD};
+          overflow: hidden;
           ${ToastHeader} {
             padding: ${DT.SPACE_4} ${DT.SPACE_6};
-            background-color: ${handleColor(props.color, 'lighter', 80)};
+            color: ${
+              props.color === 'white'
+                ? DT.COLOR_TEXT
+                : handleColor(props.color, 'darker', 80)
+            };
+
+            background-color: ${
+              props.color === 'white'
+                ? DT.COLOR_BACKGROUND_LIGHTER
+                : handleColor(props.color, 'lighter', 80)
+            };
+
           }
           ${ToastBody} {
             padding: ${DT.SPACE_4} ${DT.SPACE_6};

@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { DesignTokens as DT } from 'styles/DesignTokens';
 import { USDollar } from 'app/helpers';
@@ -29,6 +30,8 @@ type CartItemProps = {
   }[];
 };
 
+const deleteDuration = 1500;
+
 export const CartItem = ({
   name = 'Cart Item',
   image = 'no_image.png',
@@ -40,120 +43,215 @@ export const CartItem = ({
   opBucks = 0,
   icons,
 }: CartItemProps) => {
+  const indicator = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const cartItem = useRef() as React.MutableRefObject<HTMLInputElement>;
+  let [quantity, setQuantity] = useState(qty);
+
+  useEffect(() => {
+    if (cartItem.current) {
+      let to1, to2;
+      cartItem.current.style.height =
+        cartItem.current.getBoundingClientRect().height + 'px';
+      if (quantity === 0) {
+        to1 = setTimeout(() => {
+          indicator.current.classList.add('running');
+        });
+        to2 = setTimeout(() => {
+          cartItem.current.classList.add('hidden');
+          cartItem.current.style.height = '0';
+        }, deleteDuration);
+      } else {
+        // cartItem.current.classList.remove('hidden');
+        clearTimeout(to1);
+        clearTimeout(to2);
+      }
+    }
+  });
+
   const handleChange = event => {
-    console.log(event.target.value);
+    if (event && event.type === 'change') {
+      return;
+    } else {
+      // console.log(event);
+    }
   };
 
-  return (
-    <CartItemWrapper>
-      <ProductImage
-        style={{ backgroundImage: `url(img/products/${image})` }}
-      ></ProductImage>
-      <ProductData>
-        <a
-          className="cartItem__name"
-          href={
-            '#' + slugify(name, { replacement: '_', lower: true, strict: true })
-          }
-        >
-          {name}
-        </a>
+  const increaseQuantity = event => {
+    quantity += 1;
+    setQuantity(quantity);
+    // console.log(indicator);
+  };
 
-        {badges && badges.length > 0 ? (
-          <div className="cartItem__badges">
-            {badges.map((p, id) => (
-              <Badge
-                key={id}
-                name={p.name}
-                color={p.color}
-                icon={p.icon}
-              ></Badge>
-            ))}
-          </div>
-        ) : (
-          false
-        )}
+  const decreaseQuantity = event => {
+    quantity -= 1;
+    if (quantity < 1) {
+      setQuantity(0);
+    } else {
+      setQuantity(quantity);
+    }
+  };
 
-        {params && params.length > 0 ? (
-          <div className="cartItem__params">
-            {params.map((p, id) => (
-              <div className="cartItem__params__param" key={id}>
-                <span className="lighter addRight2">{p.attr}:</span>
-                <b>{p.value}</b>
-              </div>
-            ))}
-          </div>
-        ) : (
-          false
-        )}
-
-        <div className="flex">
-          <div className="cartItem__prices">
-            {oldPrice ? (
-              <div className="cartItem__prices__oldPrice">
-                <s>{USDollar.format(oldPrice)}</s>
-                <span>
-                  You Save {100 - Math.round((price * 100) / oldPrice)}%
-                </span>
-              </div>
-            ) : (
-              ''
-            )}
-            <div className="cartItem__prices__currentPrice">
-              {USDollar.format(price)}
-            </div>
-            <div className="cartItem_prices_opBucks">
-              <span>Get {USDollar.format(opBucks)} OP Bucks</span>
-              <Icon src={'icons/help_outline.svg'} size={14}></Icon>
-            </div>
-          </div>
-
-          <div className="cartItem__qty">
-            <Button
-              size="SM"
-              color="beta"
-              rounded={true}
-              inversed={true}
-              icon={
-                qty > 1
-                  ? { name: 'remove', position: 'left' }
-                  : { name: 'delete_outline', position: 'left' }
-              }
-            ></Button>
-            <Input
-              onChange={handleChange}
-              type="number"
-              color="beta"
-              value={qty.toString()}
-            ></Input>
-            <Button
-              size="SM"
-              color="beta"
-              rounded={true}
-              inversed={true}
-              icon={{ name: 'add', position: 'left' }}
-            ></Button>
-          </div>
-        </div>
-
-        <div className="cartItem__actions">
-          <a className="cartItem__action" href="#save-for-later">
-            <Icon src={'icons/save_alt.svg'} size={14}></Icon>
-            <span>Save for Later</span>
+  if (quantity > 0) {
+    return (
+      <CartItemWrapper>
+        <ProductImage
+          style={{ backgroundImage: `url(img/products/${image})` }}
+        ></ProductImage>
+        <ProductData>
+          <a
+            className="cartItem__name"
+            href={
+              '#' +
+              slugify(name, { replacement: '_', lower: true, strict: true })
+            }
+          >
+            {name}
           </a>
-          <a className="cartItem__action" href="#add-to-wishlist">
-            <Icon src={'icons/auto_fix_high.svg'} size={14}></Icon>
-            <span>Add to Wishlist</span>
+
+          {badges && badges.length > 0 ? (
+            <div className="cartItem__badges">
+              {badges.map((p, id) => (
+                <Badge
+                  key={id}
+                  name={p.name}
+                  color={p.color}
+                  icon={p.icon}
+                ></Badge>
+              ))}
+            </div>
+          ) : (
+            false
+          )}
+
+          {params && params.length > 0 ? (
+            <div className="cartItem__params">
+              {params.map((p, id) => (
+                <div className="cartItem__params__param" key={id}>
+                  <span className="lighter addRight2">{p.attr}:</span>
+                  <b>{p.value}</b>
+                </div>
+              ))}
+            </div>
+          ) : (
+            false
+          )}
+
+          <div className="flex">
+            <div className="cartItem__prices">
+              {oldPrice ? (
+                <div className="cartItem__prices__oldPrice">
+                  <s>{USDollar.format(oldPrice)}</s>
+                  <span>
+                    You Save {100 - Math.round((price * 100) / oldPrice)}%
+                  </span>
+                </div>
+              ) : (
+                ''
+              )}
+              <div className="cartItem__prices__currentPrice">
+                {USDollar.format(price)}
+              </div>
+              <div className="cartItem_prices_opBucks">
+                <span>Get {USDollar.format(opBucks)} OP Bucks</span>
+                <Icon src={'icons/help_outline.svg'} size={14}></Icon>
+              </div>
+            </div>
+
+            <div className="cartItem__qty">
+              <Button
+                size="SM"
+                color="beta"
+                rounded={true}
+                inversed={true}
+                icon={
+                  quantity > 1
+                    ? { name: 'remove', position: 'left' }
+                    : { name: 'delete_outline', position: 'left' }
+                }
+                onClick={decreaseQuantity}
+              ></Button>
+              <Input
+                onChange={handleChange}
+                type="number"
+                color="beta"
+                value={quantity.toString()}
+              ></Input>
+              <Button
+                size="SM"
+                color="beta"
+                rounded={true}
+                inversed={true}
+                icon={{ name: 'add', position: 'left' }}
+                onClick={increaseQuantity}
+              ></Button>
+            </div>
+          </div>
+
+          <div className="cartItem__actions">
+            <a className="cartItem__action" href="#save-for-later">
+              <Icon src={'icons/save_alt.svg'} size={14}></Icon>
+              <span>Save for Later</span>
+            </a>
+            <a className="cartItem__action" href="#add-to-wishlist">
+              <Icon src={'icons/auto_fix_high.svg'} size={14}></Icon>
+              <span>Add to Wishlist</span>
+            </a>
+          </div>
+        </ProductData>
+      </CartItemWrapper>
+    );
+  } else {
+    return (
+      <CartItemWrapper ref={cartItem}>
+        <ProductImage
+          style={{
+            backgroundImage: `url(img/products/${image})`,
+            opacity: 0.2,
+          }}
+        ></ProductImage>
+        <ProductData>
+          <a
+            className="cartItem__name"
+            href={
+              '#' +
+              slugify(name, { replacement: '_', lower: true, strict: true })
+            }
+          >
+            {name}
           </a>
-        </div>
-      </ProductData>
-    </CartItemWrapper>
-  );
+
+          <div className="smaller lighter">deleting&hellip;</div>
+
+          <Indicator ref={indicator} />
+
+          <div className="cartItem__actions">
+            <a
+              className="cartItem__action"
+              onClick={increaseQuantity}
+              href="#undo"
+            >
+              <Icon src={'icons/undo.svg'} size={14}></Icon>
+              <span>Undo</span>
+            </a>
+            <a className="cartItem__action" href="#save-for-later">
+              <Icon src={'icons/save_alt.svg'} size={14}></Icon>
+              <span>Save for Later</span>
+            </a>
+            <a className="cartItem__action" href="#add-to-wishlist">
+              <Icon src={'icons/auto_fix_high.svg'} size={14}></Icon>
+              <span>Add to Wishlist</span>
+            </a>
+          </div>
+        </ProductData>
+      </CartItemWrapper>
+    );
+  }
 };
 
 const ProductImage = styled.div`
   width: 80px;
   min-width: 80px;
+  min-height: 80px;
   background: 50% 0 no-repeat;
   background-size: contain;
 `;
@@ -173,6 +271,7 @@ const CartItemWrapper = styled.div.attrs(props => ({
   border-bottom: 1px solid ${DT.COLOR_BORDER_LIGHT};
   background-color: white;
   padding: ${DT.SPACE_3} ${DT.SPACE_5};
+  overflow: hidden;
   transition: 0.2s;
   &:hover {
     background-color: ${DT.COLOR_BACKGROUND_LIGHT};
@@ -185,6 +284,13 @@ const CartItemWrapper = styled.div.attrs(props => ({
     .cartItem__name {
       color: ${DT.COLOR_LINK};
     }
+  }
+  &.hidden {
+    transition: 1s;
+    height: 0px;
+    border-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
   ${ProductImage} {
     transition: 0.2s;
@@ -272,5 +378,28 @@ const CartItemWrapper = styled.div.attrs(props => ({
   input[type='number'] {
     width: 48px;
     text-align: center;
+  }
+`;
+
+const Indicator = styled.div`
+  display: block;
+  width: 200px;
+  height: 2px;
+  background: ${DT.COLOR_DELTA_LIGHTER_90};
+  margin-bottom: ${DT.SPACE_4};
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 2px;
+    background: ${DT.COLOR_DELTA};
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all ${deleteDuration}ms linear;
+  }
+  &.running::after {
+    width: 200px;
   }
 `;

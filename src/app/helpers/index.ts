@@ -147,32 +147,7 @@ export const handleColor = (
         else if (amount === 95) return DT.COLOR_ALPHA_DARKER_95;
         else return DT.COLOR_ALPHA;
       }
-    case 'beta':
-      if (mode === 'lighter') {
-        if (amount === 10) return DT.COLOR_BETA_LIGHTER_10;
-        else if (amount === 20) return DT.COLOR_BETA_LIGHTER_20;
-        else if (amount === 30) return DT.COLOR_BETA_LIGHTER_30;
-        else if (amount === 40) return DT.COLOR_BETA_LIGHTER_40;
-        else if (amount === 50) return DT.COLOR_BETA_LIGHTER_50;
-        else if (amount === 60) return DT.COLOR_BETA_LIGHTER_60;
-        else if (amount === 70) return DT.COLOR_BETA_LIGHTER_70;
-        else if (amount === 80) return DT.COLOR_BETA_LIGHTER_80;
-        else if (amount === 90) return DT.COLOR_BETA_LIGHTER_90;
-        else if (amount === 95) return DT.COLOR_BETA_LIGHTER_95;
-        else return DT.COLOR_BETA;
-      } else {
-        if (amount === 10) return DT.COLOR_BETA_DARKER_10;
-        else if (amount === 20) return DT.COLOR_BETA_DARKER_20;
-        else if (amount === 30) return DT.COLOR_BETA_DARKER_30;
-        else if (amount === 40) return DT.COLOR_BETA_DARKER_40;
-        else if (amount === 50) return DT.COLOR_BETA_DARKER_50;
-        else if (amount === 60) return DT.COLOR_BETA_DARKER_60;
-        else if (amount === 70) return DT.COLOR_BETA_DARKER_70;
-        else if (amount === 80) return DT.COLOR_BETA_DARKER_80;
-        else if (amount === 90) return DT.COLOR_BETA_DARKER_90;
-        else if (amount === 95) return DT.COLOR_BETA_DARKER_95;
-        else return DT.COLOR_BETA;
-      }
+
     case 'gamma':
       if (mode === 'lighter') {
         if (amount === 10) return DT.COLOR_GAMMA_LIGHTER_10;
@@ -281,31 +256,32 @@ export const handleColor = (
         else return DT.COLOR_ZETA;
       }
 
+    case 'beta':
     default:
       if (mode === 'lighter') {
-        if (amount === 10) return DT.COLOR_GAMMA_LIGHTER_10;
-        else if (amount === 20) return DT.COLOR_GAMMA_LIGHTER_20;
-        else if (amount === 30) return DT.COLOR_GAMMA_LIGHTER_30;
-        else if (amount === 40) return DT.COLOR_GAMMA_LIGHTER_40;
-        else if (amount === 50) return DT.COLOR_GAMMA_LIGHTER_50;
-        else if (amount === 60) return DT.COLOR_GAMMA_LIGHTER_60;
-        else if (amount === 70) return DT.COLOR_GAMMA_LIGHTER_70;
-        else if (amount === 80) return DT.COLOR_GAMMA_LIGHTER_80;
-        else if (amount === 90) return DT.COLOR_GAMMA_LIGHTER_90;
-        else if (amount === 95) return DT.COLOR_GAMMA_LIGHTER_95;
-        else return DT.COLOR_GAMMA;
+        if (amount === 10) return DT.COLOR_BETA_LIGHTER_10;
+        else if (amount === 20) return DT.COLOR_BETA_LIGHTER_20;
+        else if (amount === 30) return DT.COLOR_BETA_LIGHTER_30;
+        else if (amount === 40) return DT.COLOR_BETA_LIGHTER_40;
+        else if (amount === 50) return DT.COLOR_BETA_LIGHTER_50;
+        else if (amount === 60) return DT.COLOR_BETA_LIGHTER_60;
+        else if (amount === 70) return DT.COLOR_BETA_LIGHTER_70;
+        else if (amount === 80) return DT.COLOR_BETA_LIGHTER_80;
+        else if (amount === 90) return DT.COLOR_BETA_LIGHTER_90;
+        else if (amount === 95) return DT.COLOR_BETA_LIGHTER_95;
+        else return DT.COLOR_BETA;
       } else {
-        if (amount === 10) return DT.COLOR_GAMMA_DARKER_10;
-        else if (amount === 20) return DT.COLOR_GAMMA_DARKER_20;
-        else if (amount === 30) return DT.COLOR_GAMMA_DARKER_30;
-        else if (amount === 40) return DT.COLOR_GAMMA_DARKER_40;
-        else if (amount === 50) return DT.COLOR_GAMMA_DARKER_50;
-        else if (amount === 60) return DT.COLOR_GAMMA_DARKER_60;
-        else if (amount === 70) return DT.COLOR_GAMMA_DARKER_70;
-        else if (amount === 80) return DT.COLOR_GAMMA_DARKER_80;
-        else if (amount === 90) return DT.COLOR_GAMMA_DARKER_90;
-        else if (amount === 95) return DT.COLOR_GAMMA_DARKER_95;
-        else return DT.COLOR_GAMMA;
+        if (amount === 10) return DT.COLOR_BETA_DARKER_10;
+        else if (amount === 20) return DT.COLOR_BETA_DARKER_20;
+        else if (amount === 30) return DT.COLOR_BETA_DARKER_30;
+        else if (amount === 40) return DT.COLOR_BETA_DARKER_40;
+        else if (amount === 50) return DT.COLOR_BETA_DARKER_50;
+        else if (amount === 60) return DT.COLOR_BETA_DARKER_60;
+        else if (amount === 70) return DT.COLOR_BETA_DARKER_70;
+        else if (amount === 80) return DT.COLOR_BETA_DARKER_80;
+        else if (amount === 90) return DT.COLOR_BETA_DARKER_90;
+        else if (amount === 95) return DT.COLOR_BETA_DARKER_95;
+        else return DT.COLOR_BETA;
       }
   }
 };

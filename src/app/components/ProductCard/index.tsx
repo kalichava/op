@@ -86,6 +86,7 @@ export const ProductCard = ({
         )}
         <div className="currentPrice">{USDollar.format(price)}</div>
       </div>
+
       {button ? (
         <Button
           name={button.name}

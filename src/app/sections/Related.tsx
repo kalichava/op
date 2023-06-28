@@ -1,6 +1,6 @@
-import * as React from 'react';
 import styled from 'styled-components/macro';
 import { DesignTokens as DT } from 'styles/DesignTokens';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 import { ProductCard } from '../components/ProductCard';
 
@@ -104,7 +104,20 @@ const RelatedProducts = [
 export function Related() {
   return (
     <div id="Related">
-      <Carousel>
+      <Scrollbars
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '100%',
+          maxWidth: '100%',
+          overflow: 'hidden',
+          gap: 1,
+          padding: 1,
+          marginTop: -1,
+        }}
+        autoHeight
+        autoHide
+      >
         {RelatedProducts.map((el, id) => {
           return (
             <ProductCard
@@ -120,17 +133,7 @@ export function Related() {
             ></ProductCard>
           );
         })}
-      </Carousel>
+      </Scrollbars>
     </div>
   );
 }
-
-const Carousel = styled.div`
-  display: flex;
-  max-width: 100%;
-  overflow-x: scroll;
-  background-color: ${DT.COLOR_BACKGROUND_DARKER};
-  gap: 1px;
-  padding: 1px;
-  margin-top: -1px;
-`;

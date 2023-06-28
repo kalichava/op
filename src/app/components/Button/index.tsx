@@ -20,7 +20,7 @@ type Props = {
   inversed?: boolean;
   // additionalText?: string;
   // additionalIcon?: string;
-  // onClick: () => void;
+  onClick?: (event) => void;
 };
 
 export function Button({
@@ -31,15 +31,16 @@ export function Button({
   color = 'white',
   rounded = false,
   inversed = false,
+  onClick,
 }: Props) {
   return (
     <Wrapper
       className={fullwidth ? 'fullwidth' : ''}
       size={size}
       color={color}
-      href="#"
       rounded={rounded}
       inversed={inversed}
+      onClick={onClick}
     >
       {icon && icon.name && icon.position === 'left' ? (
         <Icon src={'icons/' + icon.name + '.svg'} size={handleIconSize(size)} />
