@@ -4,15 +4,20 @@ import { handleBackgroundColor, handleBorderColor } from 'app/helpers';
 
 import { Icon } from 'app/components/Icon';
 import { Button } from 'app/components/Button';
-import { SectionBody } from 'app/components/SectionBody';
-import { SectionFooter } from 'app/components/SectionFooter';
+import { SectionBody } from 'app/components/Section/SectionBody';
+import { SectionFooter } from 'app/components/Section/SectionFooter';
+import Tag from 'app/components/Tag';
+import AltPaymentButton from 'app/components/AltPaymentButton';
 
-export function OrderSummary() {
+export default function OrderSummary({
+  handleChangeButtonClick,
+  handleCheckoutButtonClick,
+}) {
   return (
     <>
       <SectionBody>
         <Table>
-          <tbody>
+          <tbody className="smaller">
             <Row>
               <Cell>Order Subtotal (10 Items)</Cell>
               <Cell align="right">
@@ -26,8 +31,19 @@ export function OrderSummary() {
               </Cell>
             </Row>
             <Row>
-              <Cell>
-                Value Shipping <a href="#change">Change</a>
+              <Cell className="flex flexGap5">
+                <span>Value Shipping</span>
+                <div className="flex">
+                  <Button
+                    name="Change"
+                    size="XS"
+                    color="white"
+                    rounded={true}
+                    inversed={true}
+                    icon={{ name: 'chevron_right', position: 'right' }}
+                    onClick={handleChangeButtonClick}
+                  ></Button>
+                </div>
               </Cell>
               <Cell align="right">
                 <strong className="colorDiscount">Free</strong>
@@ -44,7 +60,7 @@ export function OrderSummary() {
                 <strong>Grand Total</strong>
               </Cell>
               <Cell align="right">
-                <TotalPrice>$2,750.93</TotalPrice>
+                <Tag name="$2,750.93" color="delta" />
               </Cell>
             </Row>
           </tbody>
@@ -68,8 +84,9 @@ export function OrderSummary() {
               icon={{ name: 'credit_card', position: 'left' }}
               fullwidth={true}
               color="alpha"
+              onClick={handleCheckoutButtonClick}
             />
-            <div className="smaller flex flexCenter light">
+            <div className="smaller flex flexCenter light addY4Inside">
               or use 3rd party payment method
             </div>
 
@@ -296,39 +313,11 @@ export function OrderSummary() {
 const Table = styled.table`
   width: 100%;
   font-size: inherit;
-  font-size: ${DT.FONT_SIZE_BODY_MD};
 `;
 
 const Row = styled.tr``;
 
 const Cell = styled.td`
   text-align: ${props => props.align || 'left'};
-`;
-
-const AltPaymentButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 42px;
-  padding: ${DT.SPACE_3} ${DT.SPACE_4};
-  margin: 0 auto;
-  border-radius: ${DT.SPACE_2};
-  background-color: ${props => handleBackgroundColor(props.color, false, true)};
-  border: 1px solid ${props => handleBorderColor(props.color, false, true)};
-  &:hover {
-    background-color: ${props =>
-      handleBackgroundColor(props.color, true, true)};
-    border-color: ${props => handleBorderColor(props.color, true, true)};
-  }
-`;
-
-const TotalPrice = styled.span`
-  display: inline-block;
-  background-color: ${DT.COLOR_DELTA};
-  padding: 0 ${DT.SPACE_4};
-  margin-right: -${DT.SPACE_4};
-  font-weight: ${DT.FONT_WEIGHT_BOLD};
-  color: white;
-  border-radius: 99px;
+  padding: 0;
 `;

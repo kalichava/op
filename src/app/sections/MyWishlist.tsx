@@ -1,8 +1,5 @@
-import * as React from 'react';
-import styled from 'styled-components/macro';
-import { DesignTokens as DT } from 'styles/DesignTokens';
-
-import { ProductCard } from '../components/ProductCard';
+import ProductCard from '../components/ProductCard';
+import Carousel from '../components/Carousel';
 
 const MyWishlistProducts = [
   {
@@ -101,7 +98,7 @@ const MyWishlistProducts = [
   },
 ];
 
-export function MyWishlist() {
+export default function MyWishlist() {
   return (
     <div id="MyWishlist">
       <Carousel>
@@ -129,13 +126,3 @@ export function MyWishlist() {
     </div>
   );
 }
-
-const Carousel = styled.div`
-  display: flex;
-  max-width: 100%;
-  overflow-x: scroll;
-  background-color: ${DT.COLOR_BACKGROUND_DARKER};
-  gap: 1px;
-  padding: 1px;
-  margin-top: -1px;
-`;

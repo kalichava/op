@@ -1,11 +1,5 @@
-import * as React from 'react';
-import styled from 'styled-components/macro';
-import { DesignTokens as DT } from 'styles/DesignTokens';
-
-// import { ListItem } from '../components/ListItem';
-// import { Button } from '../components/Button';
-// import { Icon } from '../components/Icon';
-import { ProductCard } from '../components/ProductCard';
+import ProductCard from 'app/components/ProductCard';
+import Carousel from 'app/components/Carousel';
 
 const SavedForLaterProducts = [
   {
@@ -104,7 +98,7 @@ const SavedForLaterProducts = [
   },
 ];
 
-export function SavedForLater() {
+export default function SavedForLater() {
   return (
     <div id="SavedForLater">
       <Carousel>
@@ -132,13 +126,3 @@ export function SavedForLater() {
     </div>
   );
 }
-
-const Carousel = styled.div`
-  display: flex;
-  max-width: 100%;
-  overflow-x: scroll;
-  background-color: ${DT.COLOR_BACKGROUND_DARKER};
-  gap: 1px;
-  padding: 1px;
-  margin-top: -1px;
-`;

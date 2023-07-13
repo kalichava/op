@@ -9,42 +9,45 @@ export const handleBackgroundColor = (color, mod = false, inversed = false) => {
   switch (color) {
     case 'alpha':
       if (inversed) {
-        return mod ? DT.COLOR_ALPHA_LIGHTER_80 : DT.COLOR_ALPHA_LIGHTER_95;
+        return mod ? DT.COLOR_ALPHA_LIGHTER_70 : DT.COLOR_ALPHA_LIGHTER_90;
       }
-      return mod ? DT.COLOR_ALPHA_DARKER_10 : DT.COLOR_ALPHA;
+      return mod ? DT.COLOR_ALPHA : DT.COLOR_ALPHA_LIGHTER_10;
 
     case 'beta':
       if (inversed) {
-        return mod ? DT.COLOR_BETA_LIGHTER_80 : DT.COLOR_BETA_LIGHTER_95;
+        return mod ? DT.COLOR_BETA_LIGHTER_70 : DT.COLOR_BETA_LIGHTER_90;
       }
-      return mod ? DT.COLOR_BETA_DARKER_10 : DT.COLOR_BETA;
+      return mod ? DT.COLOR_BETA : DT.COLOR_BETA_LIGHTER_10;
 
     case 'gamma':
       if (inversed) {
-        return mod ? DT.COLOR_GAMMA_LIGHTER_80 : DT.COLOR_GAMMA_LIGHTER_95;
+        return mod ? DT.COLOR_GAMMA_LIGHTER_70 : DT.COLOR_GAMMA_LIGHTER_90;
       }
-      return mod ? DT.COLOR_GAMMA_DARKER_10 : DT.COLOR_GAMMA;
+      return mod ? DT.COLOR_GAMMA : DT.COLOR_GAMMA_LIGHTER_10;
 
     case 'delta':
       if (inversed) {
-        return mod ? DT.COLOR_DELTA_LIGHTER_80 : DT.COLOR_DELTA_LIGHTER_95;
+        return mod ? DT.COLOR_DELTA_LIGHTER_70 : DT.COLOR_DELTA_LIGHTER_90;
       }
-      return mod ? DT.COLOR_DELTA_DARKER_10 : DT.COLOR_DELTA;
+      return mod ? DT.COLOR_DELTA : DT.COLOR_DELTA_LIGHTER_10;
 
     case 'epsilon':
       if (inversed) {
-        return mod ? DT.COLOR_EPSILON_LIGHTER_80 : DT.COLOR_EPSILON_LIGHTER_95;
+        return mod ? DT.COLOR_EPSILON_LIGHTER_70 : DT.COLOR_EPSILON_LIGHTER_90;
       }
       return mod ? DT.COLOR_EPSILON_DARKER_10 : DT.COLOR_EPSILON;
 
     case 'zeta':
       if (inversed) {
-        return mod ? DT.COLOR_ZETA_LIGHTER_80 : DT.COLOR_ZETA_LIGHTER_95;
+        return mod ? DT.COLOR_ZETA_LIGHTER_70 : DT.COLOR_ZETA_LIGHTER_90;
       }
       return mod ? DT.COLOR_ZETA_DARKER_10 : DT.COLOR_ZETA;
 
     default:
-      return mod ? DT.COLOR_BACKGROUND_LIGHTER : DT.COLOR_BACKGROUND_LIGHT;
+      if (inversed) {
+        return mod ? DT.COLOR_BACKGROUND_LIGHT : 'white';
+      }
+      return mod ? DT.COLOR_BACKGROUND_LIGHT : 'white';
   }
 };
 
@@ -52,22 +55,43 @@ export const handleTextColor = (color, mod = false, inversed = false) => {
   switch (color) {
     case 'alpha':
       if (inversed) {
-        return mod ? DT.COLOR_ALPHA_DARKER_20 : DT.COLOR_ALPHA_DARKER_10;
+        return mod ? DT.COLOR_ALPHA_DARKER_60 : DT.COLOR_ALPHA_DARKER_50;
       }
       return mod ? '#fff' : DT.COLOR_ALPHA_LIGHTER_95;
-
     case 'beta':
       if (inversed) {
-        return mod ? DT.COLOR_BETA_DARKER_20 : DT.COLOR_BETA_DARKER_10;
+        return mod ? DT.COLOR_BETA_DARKER_60 : DT.COLOR_BETA_DARKER_50;
       }
       return mod ? '#fff' : DT.COLOR_BETA_LIGHTER_95;
     case 'gamma':
+      if (inversed) {
+        return mod ? DT.COLOR_GAMMA_DARKER_60 : DT.COLOR_GAMMA_DARKER_50;
+      }
+      return mod ? '#fff' : DT.COLOR_GAMMA_LIGHTER_95;
+
     case 'delta':
+      if (inversed) {
+        return mod ? DT.COLOR_DELTA_DARKER_60 : DT.COLOR_DELTA_DARKER_50;
+      }
+      return mod ? '#fff' : DT.COLOR_DELTA_LIGHTER_95;
+
     case 'epsilon':
+      if (inversed) {
+        return mod ? DT.COLOR_EPSILON_DARKER_60 : DT.COLOR_EPSILON_DARKER_50;
+      }
+      return mod ? '#fff' : DT.COLOR_EPSILON_LIGHTER_95;
+
     case 'zeta':
-      return '#FFF';
+      if (inversed) {
+        return mod ? DT.COLOR_ZETA_DARKER_60 : DT.COLOR_ZETA_DARKER_50;
+      }
+      return mod ? '#fff' : DT.COLOR_ZETA_LIGHTER_95;
+
     default:
-      return mod ? DT.COLOR_GAMMA : DT.COLOR_GAMMA_DARKER_10;
+      if (inversed) {
+        return mod ? DT.COLOR_BETA_DARKER_20 : DT.COLOR_BETA;
+      }
+      return mod ? '#fff' : DT.COLOR_BETA_LIGHTER_95;
   }
 };
 
@@ -75,43 +99,43 @@ export const handleBorderColor = (color, mod = false, inversed = false) => {
   switch (color) {
     case 'alpha':
       if (inversed) {
-        return mod ? DT.COLOR_ALPHA_LIGHTER_80 : DT.COLOR_ALPHA_LIGHTER_80;
+        return mod ? DT.COLOR_ALPHA_LIGHTER_70 : DT.COLOR_ALPHA_LIGHTER_80;
       }
       return mod ? DT.COLOR_ALPHA_DARKER_30 : DT.COLOR_ALPHA_DARKER_10;
     case 'beta':
       if (inversed) {
-        return mod ? DT.COLOR_BETA_LIGHTER_80 : DT.COLOR_BETA_LIGHTER_80;
+        return mod ? DT.COLOR_BETA_LIGHTER_70 : DT.COLOR_BETA_LIGHTER_80;
       }
       return mod ? DT.COLOR_BETA_DARKER_30 : DT.COLOR_BETA_DARKER_10;
     case 'gamma':
       if (inversed) {
-        return mod ? DT.COLOR_GAMMA_LIGHTER_80 : DT.COLOR_GAMMA_LIGHTER_80;
+        return mod ? DT.COLOR_GAMMA_LIGHTER_70 : DT.COLOR_GAMMA_LIGHTER_80;
       }
       return mod ? DT.COLOR_GAMMA_DARKER_30 : DT.COLOR_GAMMA_DARKER_10;
 
     case 'delta':
       if (inversed) {
-        return mod ? DT.COLOR_DELTA_LIGHTER_80 : DT.COLOR_DELTA_LIGHTER_80;
+        return mod ? DT.COLOR_DELTA_LIGHTER_70 : DT.COLOR_DELTA_LIGHTER_80;
       }
       return mod ? DT.COLOR_DELTA_DARKER_30 : DT.COLOR_DELTA_DARKER_10;
 
     case 'epsilon':
       if (inversed) {
-        return mod ? DT.COLOR_EPSILON_LIGHTER_80 : DT.COLOR_EPSILON_LIGHTER_80;
+        return mod ? DT.COLOR_EPSILON_LIGHTER_70 : DT.COLOR_EPSILON_LIGHTER_80;
       }
-      return mod ? DT.COLOR_EPSILON_DARKER_30 : DT.COLOR_EPSILON_DARKER_10;
+      return mod ? DT.COLOR_EPSILON_LIGHTER_30 : DT.COLOR_EPSILON_LIGHTER_50;
 
     case 'zeta':
       if (inversed) {
-        return mod ? DT.COLOR_ZETA_LIGHTER_80 : DT.COLOR_ZETA_LIGHTER_80;
+        return mod ? DT.COLOR_ZETA_LIGHTER_70 : DT.COLOR_ZETA_LIGHTER_80;
       }
       return mod ? DT.COLOR_ZETA_DARKER_30 : DT.COLOR_ZETA_DARKER_10;
 
     default:
       if (inversed) {
-        return mod ? DT.COLOR_GAMMA_LIGHTER_80 : DT.COLOR_GAMMA_LIGHTER_80;
+        return mod ? DT.COLOR_BORDER_LIGHTER : DT.COLOR_BORDER_LIGHT;
       }
-      return mod ? DT.COLOR_GAMMA_DARKER_30 : DT.COLOR_GAMMA_DARKER_10;
+      return mod ? DT.COLOR_BORDER_LIGHT : DT.COLOR_BORDER_LIGHTER;
   }
 };
 
