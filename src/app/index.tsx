@@ -13,6 +13,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GlobalStyle } from 'styles/global-styles';
 
 import { CartPage } from './pages/CartPage/Loadable';
+import { FormPage } from './pages/FormPage/Loadable';
 // import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
@@ -29,7 +30,7 @@ export function App() {
       </Helmet>
 
       <Routes>
-        {/* <Route path="/checkout/v2/build" element={<CartPage />} /> */}
+        <Route path="/form" element={<FormPage />} />
         <Route path="*" element={<CartPage />} />
       </Routes>
       <GlobalStyle />

@@ -18,8 +18,8 @@ type Props = {
   color?: string;
   rounded?: boolean;
   inversed?: boolean;
-  // additionalText?: string;
-  // additionalIcon?: string;
+  href?: string;
+  tabindex?: any; // todo: fix it
   onClick?: (event) => void;
 };
 
@@ -31,15 +31,19 @@ export function Button({
   color = 'white',
   rounded = false,
   inversed = false,
+  tabindex = '1',
+  href = '#cancel',
   onClick,
 }: Props) {
   return (
     <Wrapper
+      href={href}
       className={fullwidth ? 'button fullwidth' : 'button'}
       size={size}
       color={color}
       rounded={rounded}
       inversed={inversed}
+      tabIndex={tabindex}
       onClick={onClick}
     >
       {icon && icon.name && icon.position === 'left' ? (
@@ -139,6 +143,7 @@ const Wrapper = styled.a<{ rounded; size; color; inversed }>`
     handleBackgroundColor(props.color, false, props.inversed)};
   border: 1px solid
     ${props => handleBorderColor(props.color, false, props.inversed)};
+
   &:hover {
     cursor: pointer;
     color: ${props => handleTextColor(props.color, true, props.inversed)};
@@ -147,6 +152,12 @@ const Wrapper = styled.a<{ rounded; size; color; inversed }>`
     border-color: ${props =>
       handleBorderColor(props.color, true, props.inversed)};
   }
+
+  &:focus {
+    outline: ${DT.SPACE_1} solid
+      ${props => handleBorderColor(props.color, false, true)};
+  }
+
   &.fullwidth {
     width: 100%;
   }

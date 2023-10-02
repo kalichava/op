@@ -10,7 +10,7 @@ export default function Breadcrumbs() {
       </a>
       <Slash>/</Slash>
       <a className="current" href="#shopping-cart">
-        Shopping Cart
+        Example Form
       </a>
     </Wrapper>
   );

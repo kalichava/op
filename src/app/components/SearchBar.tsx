@@ -7,7 +7,7 @@ export function SearchBar() {
     <Wrapper>
       <SearchInput
         type="search"
-        placeholder="Search by product, brand, category"
+        placeholder="Search by product, brand, category..."
       ></SearchInput>
     </Wrapper>
   );
@@ -15,7 +15,7 @@ export function SearchBar() {
 
 const Wrapper = styled.div`
   background-color: ${DT.COLOR_BACKGROUND_LIGHTER};
-  padding: ${DT.SPACE_2} ${DT.SPACE_4} 0 ${DT.SPACE_4};
+  padding: ${DT.SPACE_2} ${DT.SPACE_4} ${DT.SPACE_5} ${DT.SPACE_4};
 `;
 
 const SearchInput = styled.input`

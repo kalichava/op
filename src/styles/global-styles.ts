@@ -65,18 +65,20 @@ export const GlobalStyle = createGlobalStyle`
     color: ${DT.COLOR_LINK_HOVER};
   }
 
-  button {
-    background-color: transparent;
-    padding: 0;
-  }
-
   .underline {
     text-decoration: underline;
     &:hover {
       text-decoration: none;
     }
   }
-  
+
+  /* Forms */
+
+  button {
+    background-color: transparent;
+    padding: 0;
+  }
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -94,41 +96,150 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
   }
 
-  .select { // Ariakit Select
-    display: flex;
-    align-items: center;
-    gap: ${DT.SPACE_4};
+  .input,
+  .select,
+  .textarea {
+    background-color: ${DT.BG};
+    border: 1px solid ${DT.COLOR_BORDER_LIGHTER};
+    border-radius: ${DT.BORDER_RADIUS_MD};
+    color: ${DT.COLOR_TEXT};
+    font-size: ${DT.FONT_SIZE_BODY_LG};
     position: relative;
     z-index: 1;
     text-align: left;
     width: 100%;
-    position: relative;
-    background-color: ${DT.COLOR_BACKGROUND_LIGHT};
-    border: 1px solid ${DT.COLOR_BORDER_LIGHTER};
-    border-radius: ${DT.BORDER_RADIUS_MD};
     padding: ${DT.SPACE_4} ${DT.SPACE_5};
-    font-size: ${DT.FONT_SIZE_BODY_LG};
-    .icon {
+    transition: all .2s;
+
+    &:hover {
+      border-color: ${DT.BASE_SURFACE_BORDER_MOD};
+    }
+
+    &:focus,
+    &[aria-expanded=true] {
+      border-color: ${DT.BASE_ELEVATED_BORDER_MOD};
+      outline: ${DT.SPACE_1} solid ${DT.BASE_BORDER_MOD};
+    }
+  }
+
+  .select { // Ariakit Select
+    display: flex;
+    align-items: center;
+    gap: ${DT.SPACE_4};
+    .arrows {
+      width: 28px;
+      height: 28px;
+      border-radius: 14px;
+      background-color: ${DT.BASE_BG};
       position: absolute;
       top: 50%;
+      right: ${DT.SPACE_3};
       transform: translateY(-50%);
-      right: ${DT.SPACE_4};
+      transition: .2s;
+
+      .arrow {
+        width: 4px;
+        margin: 1px 0 0 -2px;
+        height: 1.25rem;
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        span {
+          top: 0.5rem;
+          position: absolute;
+          width: 9px;
+          height: 2px;
+          background-color: ${DT.COLOR_TEXT};
+          display: inline-block;
+          transition: all 0.2s ease;
+          border-radius: 25px;
+          &:first-of-type {
+            left: 0;
+            transform: rotate(-45deg);
+          }
+          &:last-of-type {
+            right: 0;
+            transform: rotate(45deg);
+          }
+        }
+      }      
+      &:hover {
+        background-color: ${DT.BASE_BG_MOD};
+      }
     }
+    &[aria-expanded=true] {
+        .arrows .arrow {
+          span {
+            &:first-of-type {
+              transform: rotate(45deg);
+            }
+            &:last-of-type {
+              transform: rotate(-45deg);
+            }
+          }
+        }
+      }
+
   }
 
   .input { // Ariakit Input
     display: block;
-    position: relative;
-    text-align: left;
-    width: 100%;
-    position: relative;
-    background-color: ${DT.COLOR_BACKGROUND_LIGHT};
-    border: 1px solid ${DT.COLOR_BORDER_LIGHTER};
-    border-radius: ${DT.BORDER_RADIUS_MD};
-    padding: ${DT.SPACE_4} ${DT.SPACE_5};
-    font-size: ${DT.FONT_SIZE_BODY_LG};
-    color: ${DT.COLOR_TEXT};
     height: ${DT.SPACE_10};
+
+    &::autofill {}
+    /* Matches when an <input> has been autofilled by the browser. */
+
+    &::enabled {}
+    /* Represents a user interface element that is in an enabled state. */
+
+    &::disabled {}
+    /* Represents a user interface element that is in a disabled state. */
+
+    &::read-only {}
+    /* Represents any element that cannot be changed by the user. */
+
+    &::read-write {}
+    /* Represents any element that is user-editable. */
+
+    &::placeholder-shown {}
+    /* Matches an input element that is displaying placeholder text. For example, it will match the placeholder attribute in the <input> and <textarea> elements. */
+
+    &::default {}
+    /* Matches one or more UI elements that are the default among a set of elements. */
+
+    &::checked {}
+    /* Matches when elements such as checkboxes and radio buttons are toggled on. */
+
+    &::indeterminate {}
+    /* Matches UI elements when they are in an indeterminate state. */
+
+    &::blank {}
+    /* Matches a user-input element which is empty, containing an empty string or other null input. */
+
+    &::valid {}
+    /* Matches an element with valid contents. For example, an input element with the type 'email' that contains a validly formed email address or an empty value if the control is not required. */
+
+    &::invalid {}
+    /* Matches an element with invalid contents. For example, an input element with type 'email' with a name entered. */
+
+    &::in-range {}
+    /* Applies to elements with range limitations. For example, a slider control when the selected value is in the allowed range. */
+
+    &::out-of-range {}
+    /* Applies to elements with range limitations. For example, a slider control when the selected value is outside the allowed range. */
+
+    &::required {}
+    /* Matches when a form element is required. */
+
+    &::optional {}
+    /* Matches when a form element is optional. */
+
+    &::user-invalid {}
+    /* Represents an element with incorrect input, but only when the user has interacted with it. */
+
+
   }
 
   .field {
@@ -137,50 +248,86 @@ export const GlobalStyle = createGlobalStyle`
       display: inline-block;
       position: relative;
       border-bottom: 1px solid ${DT.COLOR_BACKGROUND_LIGHT};
-      padding: 0 ${DT.SPACE_3};
+      padding: 0 ${DT.SPACE_2};
       z-index: 2;
       top: 1px;
       left: ${DT.SPACE_3};
       font-size: ${DT.FONT_SIZE_BODY_SM};
+      background-color: ${DT.BG};
     }
+
     button {
       width: 100%;
     }
+
     .popover {
       z-index: 999;
       width: 100%;
-      background-color: ${DT.COLOR_BACKGROUND_LIGHT};
-      border: 1px solid ${DT.COLOR_BORDER_LIGHTER};
+      background-color: ${DT.BG};
+      border: none;
       border-radius: ${DT.BORDER_RADIUS_MD};
       box-shadow: 0 ${DT.SPACE_3} ${DT.SPACE_3} rgba(0,0,0,.1);
+      margin-top: ${DT.SPACE_2};
+      overflow: hidden;
       .option {
         color: ${DT.COLOR_LIGHTER};
         font-size: ${DT.FONT_SIZE_BODY_LG};
         padding: ${DT.SPACE_4} ${DT.SPACE_5};
-        border-bottom: 1px solid ${DT.COLOR_BORDER_LIGHTER};
+        border-bottom: 1px solid ${DT.NEUTRAL_BORDER};
         transition: .2s;
         cursor: pointer;
         .fi {
           margin-right: ${DT.SPACE_4};
         }
         &[aria-selected="true"] {
-          background-color: ${DT.COLOR_BACKGROUND_DARKER};
-          border-bottom: 1px solid ${DT.COLOR_BORDER_DARKER};
+          position: relative;
+          background-color: ${DT.BASE_SURFACE_BG};
+          border-bottom: 1px solid ${DT.BASE_SURFACE_BORDER};
           color: ${DT.COLOR_TEXT};
           cursor: default;
           
           &:hover {
-            background-color: ${DT.COLOR_BACKGROUND_DARKER};
+            background-color: ${DT.SECONDARY_SURFACE_BG_MOD};
+            border-bottom: 1px solid ${DT.SECONDARY_SURFACE_BORDER_MOD};
           }
+          
+          &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            right: ${DT.SPACE_4};
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSI+PGcgY2xpcC1wYXRoPSJ1cmwoI2EpIj48cGF0aCBmaWxsPSIjMzQzQzQ3IiBkPSJNOSAxNi4xNyA0LjgzIDEybC0xLjQyIDEuNDFMOSAxOSAyMSA3bC0xLjQxLTEuNDFMOSAxNi4xN1oiLz48L2c+PGRlZnM+PGNsaXBQYXRoIGlkPSJhIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDI0djI0SDB6Ii8+PC9jbGlwUGF0aD48L2RlZnM+PC9zdmc+);
+          }
+
+          
         }
+
         &:hover {
           color: ${DT.COLOR_TEXT};
-          background-color: ${DT.COLOR_BACKGROUND};
-          /* padding-left: ${DT.SPACE_6}; */
+          background-color: ${DT.SECONDARY_SURFACE_BG_MOD};
+          border-bottom: 1px solid ${DT.SECONDARY_SURFACE_BORDER_MOD};
         }
+
+        &:last-child,
+        &:last-child:hover { border-bottom: none; }
       }
     }
   }
+
+  .formRow {
+    min-height: 64px;
+  }
+
+  .secondaryInputText {
+    padding: ${DT.SPACE_1} ${DT.SPACE_5};
+    color: ${DT.COLOR_LIGHTER};
+  }
+
+  /* Lists */
 
   ul {
     margin: 0;
@@ -287,6 +434,9 @@ export const GlobalStyle = createGlobalStyle`
   }
   .flexGap6 {
     gap: ${DT.SPACE_6};
+  }
+  .halfWidth {
+    width: 50%;
   }
 
   .addRight1 {

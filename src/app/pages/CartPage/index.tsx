@@ -493,7 +493,7 @@ export function CartPage() {
 
       <Dialog dialog={checkoutDialog} name="Secure Checkout" size="LG">
         {/* Have an Account? */}
-        <CheckoutWizardStep>
+        <CheckoutWizardStep hide={false}>
           <>
             <SectionHeader
               name="Have an Account?"
