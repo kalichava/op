@@ -30,8 +30,8 @@ export function App() {
       </Helmet>
 
       <Routes>
-        <Route path="/form" element={<FormPage />} />
-        <Route path="*" element={<CartPage />} />
+        {/* <Route path="/form" element={<FormPage />} /> */}
+        <Route path="*" element={<FormPage />} />
       </Routes>
       <GlobalStyle />
     </BrowserRouter>
