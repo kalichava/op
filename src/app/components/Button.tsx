@@ -79,11 +79,11 @@ const handleIconPadding = (size: string) => {
     case 'LG':
       return `${DT.SPACE_5} ${DT.SPACE_7}`;
     case 'SM':
-      return `${DT.SPACE_3} ${DT.SPACE_6}`;
+      return `${DT.SPACE_3} ${DT.SPACE_7}`;
     case 'XS':
-      return `${DT.SPACE_0} ${DT.SPACE_4}`;
+      return `${DT.SPACE_0} ${DT.SPACE_7}`;
     default:
-      return `${DT.SPACE_4} ${DT.SPACE_5}`;
+      return `${DT.SPACE_4} ${DT.SPACE_7}`;
   }
 };
 
@@ -103,13 +103,13 @@ const handleFontSize = (size: string) => {
 const handleGap = (size: string) => {
   switch (size) {
     case 'LG':
-      return DT.SPACE_5;
-    case 'SM':
       return DT.SPACE_4;
+    case 'SM':
+      return DT.SPACE_3;
     case 'XS':
       return DT.SPACE_2;
     default:
-      return DT.SPACE_4;
+      return DT.SPACE_3;
   }
 };
 

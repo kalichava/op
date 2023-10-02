@@ -3,7 +3,7 @@ import country from 'country-list-js';
 import states from 'app/assets/us-states.json';
 import '/node_modules/flag-icons/css/flag-icons.min.css';
 // import styled from 'styled-components/macro';
-import { Icon } from 'app/components/Icon';
+// import { Icon } from 'app/components/Icon';
 import { Button } from 'app/components/Button';
 import { useState } from 'react';
 
@@ -86,10 +86,10 @@ export default function CalculateShippingTax() {
       <Ariakit.Form
         store={form}
         aria-labelledby="calculate-shipping"
-        className="flex flexColumn flexGap4 addBottom6"
+        className="flex flexColumn flexGap6 addBottom6"
       >
         {/* nickname */}
-        <div className="flex fullwidth formRow">
+        <div className="flex fullwidth">
           <div className="field flexGrow1">
             <Ariakit.FormLabel name={form.names.nickname}>
               Nickname
@@ -103,8 +103,9 @@ export default function CalculateShippingTax() {
             />
           </div>
         </div>
+
         {/* country, zip*/}
-        <div className="flex flexGap4 fullwidth formRow">
+        <div className="flex flexGap4 fullwidth">
           <div className="field flexGrow1">
             <Ariakit.FormLabel name={form.names.country}>
               Country
@@ -169,8 +170,9 @@ export default function CalculateShippingTax() {
             />
           </div>
         </div>
+
         {/* first name, last name */}
-        <div className="flex flexGap4 fullwidth formRow">
+        <div className="flex flexGap4 fullwidth">
           <div className="field flexGrow1 halfWidth">
             <Ariakit.FormLabel name={form.names.firstName}>
               First Name
@@ -196,8 +198,9 @@ export default function CalculateShippingTax() {
             />
           </div>
         </div>
+
         {/* street address */}
-        <div className="flex flexGap4 fullwidth formRow">
+        <div className="flex flexGap4 fullwidth">
           <div className="field flexGrow1">
             <Ariakit.FormLabel name={form.names.streetAddress}>
               Street Address
@@ -211,8 +214,9 @@ export default function CalculateShippingTax() {
             />
           </div>
         </div>
+
         {/* state, city */}
-        <div className="flex flexGap4 fullwidth formRow">
+        <div className="flex flexGap4 fullwidth">
           <div className="field flexGrow1 halfWidth">
             <Ariakit.FormLabel name={form.names.state}>State</Ariakit.FormLabel>
             <Ariakit.Select
@@ -265,8 +269,9 @@ export default function CalculateShippingTax() {
             </div>
           </div>
         </div>
+
         {/* phone, ext */}
-        <div className="flex flexGap4 fullwidth formRow">
+        <div className="flex flexGap4 fullwidth">
           <div className="field flexGrow1 halfWidth">
             <Ariakit.FormLabel name={form.names.phone}>
               Phone Number
@@ -291,6 +296,56 @@ export default function CalculateShippingTax() {
             />
           </div>
         </div>
+
+        {/* radio buttons */}
+        <div className="flex flexColumn fullwidth">
+          <Ariakit.RadioProvider>
+            <Ariakit.RadioGroup className="radiogroup">
+              <label className="label">
+                <Ariakit.Radio className="radio" value="Spin Editor" />
+                <span className="mark"></span>
+                <span className="name">Spin Editor</span>
+              </label>
+              <label className="label">
+                <Ariakit.Radio className="radio" value="Text Box" />
+                <span className="mark"></span>
+                <span className="name">Text Box</span>
+              </label>
+              <label className="label">
+                <Ariakit.Radio className="radio" value="Time Editor" />
+                <span className="mark"></span>
+                <span className="name">Time Editor</span>
+              </label>
+              <label className="label">
+                <Ariakit.Radio className="radio" value="Token Box" />
+                <span className="mark"></span>
+                <span className="name">Token Box</span>
+              </label>
+              <label className="label">
+                <Ariakit.Radio className="radio" value="Track Bar" />
+                <span className="mark"></span>
+                <span className="name">Track Bar</span>
+              </label>
+              <label className="label">
+                <Ariakit.Radio className="radio" value="Validation Summary" />
+                <span className="mark"></span>
+                <span className="name">Validation Summary</span>
+              </label>
+            </Ariakit.RadioGroup>
+          </Ariakit.RadioProvider>
+        </div>
+
+        {/* checkboxes */}
+        <div className="flex flexGap4 fullwidth checkboxgroup">
+          <label className="label">
+            <Ariakit.Checkbox className="checkbox" />
+            <span className="mark"></span>
+            <span className="name">
+              I have read and agree to the terms and conditions
+            </span>
+          </label>
+        </div>
+
         {/* buttons */}
         <div className="flex flexGap4 fullwidth addTop6">
           <div className="field flexGrow0">
@@ -306,6 +361,7 @@ export default function CalculateShippingTax() {
           <div className="field flexGrow1">
             <Button
               href="#save"
+              icon={{ name: 'save', position: 'left' }}
               tabindex="12"
               name="Save Address"
               color="alpha"

@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://kalichava.github.io/",
   "dependencies": {
-    "@ariakit/react": "^0.2.10",
+    "@ariakit/react": "0.3.3",
     "@reduxjs/toolkit": "1.8.5",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",

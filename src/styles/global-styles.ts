@@ -109,6 +109,7 @@ export const GlobalStyle = createGlobalStyle`
     text-align: left;
     width: 100%;
     padding: ${DT.SPACE_4} ${DT.SPACE_5};
+    margin: 0;
     transition: all .2s;
 
     &:hover {
@@ -118,7 +119,7 @@ export const GlobalStyle = createGlobalStyle`
     &:focus,
     &[aria-expanded=true] {
       border-color: ${DT.BASE_ELEVATED_BORDER_MOD};
-      outline: ${DT.SPACE_1} solid ${DT.BASE_BORDER_MOD};
+      outline: ${DT.SPACE_1} solid rgba(8, 13, 22, .08);
     }
   }
 
@@ -188,6 +189,7 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     height: ${DT.SPACE_10};
 
+
     &::autofill {}
     /* Matches when an <input> has been autofilled by the browser. */
 
@@ -250,7 +252,7 @@ export const GlobalStyle = createGlobalStyle`
       border-bottom: 1px solid ${DT.COLOR_BACKGROUND_LIGHT};
       padding: 0 ${DT.SPACE_2};
       z-index: 2;
-      top: 1px;
+      top: ${DT.SPACE_2};
       left: ${DT.SPACE_3};
       font-size: ${DT.FONT_SIZE_BODY_SM};
       background-color: ${DT.BG};
@@ -320,6 +322,156 @@ export const GlobalStyle = createGlobalStyle`
 
   .formRow {
     min-height: 64px;
+  }
+
+  .radiogroup {
+    display: flex;
+    flex-direction: column;
+    gap: ${DT.SPACE_2};
+    .label {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: ${DT.SPACE_1};
+
+      .radio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        display: none;
+      }
+
+      .mark {
+        display: block;
+        width: 22px;
+        height: 22px;
+        position: relative;
+        border-radius: 11px;
+        &::before {
+          content: '';
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          border: 2px solid ${DT.COLOR_BETA};
+          box-sizing: border-box;
+          border-radius: 8px;
+        }
+        &::after {
+          content: '';
+          display: block;
+          width: 7px;
+          height: 7px;
+          position: absolute;
+          top: 7.5px;
+          left: 7.5px;
+          border-radius: 4px;
+          background-color: ${DT.COLOR_BETA};
+          opacity: 0;
+          transform: scale(.1);
+          transition: .2s;
+        }
+      }
+
+      .name {
+        color: ${DT.COLOR_LIGHTER};
+      }
+
+      & [aria-checked="true"] + span::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+      & [aria-checked="true"] + span::before {
+        outline: ${DT.SPACE_1} solid rgba(27, 71, 154, .2);
+      }
+
+      & [aria-checked="true"] + span + span {
+        color: ${DT.COLOR_DARKER};
+      }
+
+
+      &:hover {
+        .name {
+          color: ${DT.COLOR_TEXT};
+        }
+      }
+
+      
+    }
+  }
+
+  .checkboxgroup {
+    .label {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: ${DT.SPACE_1};
+
+      .checkbox {
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        &[aria-checked="true"] + span::before {
+          background-color: ${DT.COLOR_BETA};
+          outline: ${DT.SPACE_1} solid rgba(27, 71, 154, .2);
+        }
+        &[aria-checked="true"] + span::after {
+          transform: rotate(45deg) scale(1);
+        }
+        &[aria-checked="true"] + span + span {
+          color: ${DT.COLOR_TEXT};
+        }
+      }
+      .mark {
+        display: block;
+        width: 22px;
+        height: 22px;
+        position: relative;
+        border-radius: 11px;
+        &::before {
+          content: '';
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          background-color: ${DT.BG};
+          border: 2px solid ${DT.COLOR_BETA};
+          box-sizing: border-box;
+          border-radius: 2px;
+          transition: .2s;
+        }
+        &::after {
+          content: '';
+          display: block;
+          box-sizing: border-box;
+          width: 6px;
+          height: 11px;
+          position: absolute;
+          top: 4px;
+          left: 8px;
+          border: 2px solid white;
+          border-top: none;
+          border-left: none;
+          transform: rotate(45deg) scale(.2);
+          transition: .2s;
+          transition-delay: 100ms;
+        }
+      }
+
+      .name {
+        color: ${DT.COLOR_LIGHTER};
+      }
+
+    }
   }
 
   .secondaryInputText {
